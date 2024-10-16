@@ -1,0 +1,27 @@
+# vim: ft=yaml.ansible
+---
+orgname_vault: 'Demo Organization'
+
+controller_validate_certs: false
+
+controller_configuration_async_retries: 30
+
+controller_settings: []
+
+controller_projects: []
+
+controller_organizations: []
+
+controller_inventories: []
+
+controller_inventory_sources: []
+
+controller_credential_types: []
+
+controller_templates: []
+
+controller_schedules: []
+
+controller_credentials: []
+
+controller_launch_jobs: []
