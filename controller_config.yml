@@ -91,6 +91,30 @@ controller_credential_input_sources:
       secret_path: hub/kiosk-ssh
       secret_key: privatekey
 
+  - source_credential: Hashivault
+    target_credential: rhsm_credential
+    input_field_name: username
+    metadata:
+      secret_backend: secret
+      secret_path: hub/rhsm
+      secret_key: username
+
+  - source_credential: Hashivault
+    target_credential: rhsm_credential
+    input_field_name: password
+    metadata:
+      secret_backend: secret
+      secret_path: hub/rhsm
+      secret_key: password
+
+  - source_credential: Hashivault
+    target_credential: kiosk_container_extra_params
+    input_field_name: container_extra_params
+    metadata:
+      secret_backend: secret
+      secret_path: hub/kiosk-extra
+      secret_key: password
+
 controller_credentials:
   - name: Hashivault
     description: In-Cluster Hashicorp vault lookup
@@ -109,9 +133,19 @@ controller_credentials:
     inputs:
       kube_config: "{{ secrets['kubeconfig'] }}"
 
+  - name: rhsm_credential
+    description: RHSM credential registering RHEL VMs
+    organization: HMI Demo
+    credential_type: RHSMCredential
+
   - name: kiosk-private-key
     description: Machine credential for kiosk type machines
     organization: HMI Demo
     credential_type: Machine
+
+  - name: kiosk_container_extra_params
+    description: Kiosk Extra container parameters
+    organization: HMI Demo
+    credential_type: KioskExtraParams
 
 controller_launch_jobs: []
