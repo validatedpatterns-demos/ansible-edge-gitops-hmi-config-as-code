@@ -100,6 +100,7 @@ controller_templates:
     inventory: HMI Demo Kiosks
     credentials:
       - kiosk-private-key
+    execution_environment: Ansible Edge GitOps EE
 
   - name: Dynamic Provision Kiosk Playbook
     organization: HMI Demo
@@ -112,6 +113,7 @@ controller_templates:
       - kiosk-private-key
       - rhsm_credential
       - kiosk_container_extra_params
+    execution_environment: Ansible Edge GitOps EE
 
   - name: Kiosk Mode Playbook
     organization: HMI Demo
@@ -122,6 +124,7 @@ controller_templates:
     credentials:
       - kiosk-private-key
       - rhsm_credential
+    execution_environment: Ansible Edge GitOps EE
 
   - name: Podman Playbook
     organization: HMI Demo
@@ -132,6 +135,7 @@ controller_templates:
     credentials:
       - kiosk-private-key
       - kiosk_container_extra_params
+    execution_environment: Ansible Edge GitOps EE
 
 controller_schedules:
   - name: Dynamic Provision Kiosk Playbook
@@ -214,3 +218,8 @@ controller_credentials:
     credential_type: KioskExtraParams
 
 controller_launch_jobs: []
+
+controller_execution_environments:
+  - name: Ansible Edge GitOps EE
+    image: quay.io/hybridcloudpatterns/ansible-edge-gitops-ee
+    pull: always
