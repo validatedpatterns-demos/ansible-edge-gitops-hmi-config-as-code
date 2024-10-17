@@ -6,12 +6,30 @@ controller_configuration_async_retries: 30
 
 controller_settings: []
 
-controller_projects: []
+controller_projects:
+  - name: Demo Project
+    state: absent
+
+  - name: AEG GitOps
+    organization: HMI Demo
+    scm_branch: main
+    scm_clean: "no"
+    scm_delete_on_update: "no"
+    scm_type: git
+    scm_update_on_launch: "yes"
+    scm_url: https://github.com/validatedpatterns-demos/rhvp.ansible_edge_hmi.git
 
 controller_organizations:
-  - name: "HMI Demo"
+  - name: HMI Demo
 
-controller_inventories: []
+  - name: Default
+    state: absent
+
+controller_inventories:
+  - name: HMI Demo Kiosks
+    organization: HMI Demo
+    kind: smart
+    host_filter: name__icontains=kiosk
 
 controller_inventory_sources: []
 
@@ -70,9 +88,56 @@ controller_credential_types:
       extra_vars:
         container_extra_params: "{  { container_extra_params }}"
 
-controller_templates: []
+controller_templates:
+  - name: Demo Job Template
+    state: absent
 
-controller_schedules: []
+  - name: Ping Playbook
+    organization: HMI Demo
+    project: AEG GitOps
+    job_type: run
+    playbook: playbooks/ping.yml
+    inventory: HMI Demo Kiosks
+    credentials:
+      - kiosk-private-key
+
+  - name: Dynamic Provision Kiosk Playbook
+    organization: HMI Demo
+    project: AEG GitOps
+    job_type: run
+    playbook: playbooks/dynamic_kiosk_provision.yml
+    inventory: HMI Demo Kiosks
+    credentials:
+      - Kubeconfig
+      - kiosk-private-key
+      - rhsm_credential
+      - kiosk_container_extra_params
+
+  - name: Kiosk Mode Playbook
+    organization: HMI Demo
+    project: AEG GitOps
+    job_type: run
+    playbook: playbooks/kiosk_playbook.yml
+    inventory: HMI Demo Kiosks
+    credentials:
+      - kiosk-private-key
+      - rhsm_credential
+
+  - name: Podman Playbook
+    organization: HMI Demo
+    project: AEG GitOps
+    job_type: run
+    playbook: playbooks/podman_playbook.yml
+    inventory: HMI Demo Kiosks
+    credentials:
+      - kiosk-private-key
+      - kiosk_container_extra_params
+
+controller_schedules:
+  - name: Dynamic Provision Kiosk Playbook
+    organization: HMI Demo
+    unified_job_template: Dynamic Provision Kiosk Playbook
+    rrule: DTSTART:20191219T130500Z RRULE:FREQ=MINUTELY;INTERVAL=10
 
 controller_credential_input_sources:
   - source_credential: Hashivault
