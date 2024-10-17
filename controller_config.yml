@@ -178,7 +178,7 @@ controller_credential_input_sources:
     metadata:
       secret_backend: secret
       secret_path: hub/kiosk-extra
-      secret_key: password
+      secret_key: container_extra_params
 
 controller_credentials:
   - name: Hashivault
