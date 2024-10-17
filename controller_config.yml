@@ -136,7 +136,7 @@ controller_credentials:
   - name: rhsm_credential
     description: RHSM credential registering RHEL VMs
     organization: HMI Demo
-    credential_type: RHSMCredential
+    credential_type: RHSMcredential
 
   - name: kiosk-private-key
     description: Machine credential for kiosk type machines
