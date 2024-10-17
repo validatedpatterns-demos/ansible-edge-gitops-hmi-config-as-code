@@ -21,6 +21,7 @@ controller_projects:
 
 controller_organizations:
   - name: HMI Demo
+    galaxy_credentials: Ansible Galaxy
 
   - name: Default
     state: absent
@@ -100,7 +101,7 @@ controller_templates:
     inventory: HMI Demo Kiosks
     credentials:
       - kiosk-private-key
-    execution_environment: Ansible Edge GitOps EE
+    #execution_environment: Ansible Edge GitOps EE
 
   - name: Dynamic Provision Kiosk Playbook
     organization: HMI Demo
@@ -113,7 +114,7 @@ controller_templates:
       - kiosk-private-key
       - rhsm_credential
       - kiosk_container_extra_params
-    execution_environment: Ansible Edge GitOps EE
+    #execution_environment: Ansible Edge GitOps EE
 
   - name: Kiosk Mode Playbook
     organization: HMI Demo
@@ -124,7 +125,7 @@ controller_templates:
     credentials:
       - kiosk-private-key
       - rhsm_credential
-    execution_environment: Ansible Edge GitOps EE
+    #execution_environment: Ansible Edge GitOps EE
 
   - name: Podman Playbook
     organization: HMI Demo
@@ -135,7 +136,7 @@ controller_templates:
     credentials:
       - kiosk-private-key
       - kiosk_container_extra_params
-    execution_environment: Ansible Edge GitOps EE
+    #execution_environment: Ansible Edge GitOps EE
 
 controller_schedules:
   - name: Dynamic Provision Kiosk Playbook
