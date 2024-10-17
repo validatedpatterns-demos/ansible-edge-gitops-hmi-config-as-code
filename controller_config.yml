@@ -1,7 +1,5 @@
 # vim: ft=yaml.ansible
 ---
-orgname_vault: 'Demo Organization'
-
 controller_validate_certs: false
 
 controller_configuration_async_retries: 30
@@ -76,6 +74,23 @@ controller_templates: []
 
 controller_schedules: []
 
+controller_credential_input_sources:
+  - source_credential: Hashivault
+    target_credential: kiosk-private-key
+    input_field_name: username
+    metadata:
+      secret_backend: secret
+      secret_path: hub/kiosk-ssh-key
+      secret_key: username
+
+  - source_credential: Hashivault
+    target_credential: kiosk-private-key
+    input_field_name: ssh_key_data
+    metadata:
+      secret_backend: secret
+      secret_path: hub/kiosk-ssh-key
+      secret_key: privatekey
+
 controller_credentials:
   - name: Hashivault
     description: In-Cluster Hashicorp vault lookup
@@ -93,5 +108,13 @@ controller_credentials:
     credential_type: Kubeconfig
     inputs:
       kube_config: "{{ secrets['kubeconfig'] }}"
+
+  - name: kiosk-private-key
+    description: Machine credential for kiosk type machines
+    organization: HMI Demo
+    credential_type: Machine
+    #inputs:
+      #username: "{{ secrets[item ~ '-ssh']['username'] }}"
+      #ssh_key_data: "{{ secrets[item ~ '-ssh']['privatekey'] }}"
 
 controller_launch_jobs: []
