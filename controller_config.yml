@@ -80,7 +80,7 @@ controller_credentials:
   - name: Hashivault
     description: In-Cluster Hashicorp vault lookup
     organization: HMI Demo
-    credential_type: hashivault
+    credential_type: HashiCorp Vault Secret Lookup
     inputs:
       url: "{{ secrets['vault_url'] }}"
       token: "{{ secrets['vault_root_token'] }}"
