@@ -40,15 +40,15 @@ controller_credential_types:
     description: RHSM Credentials
     kind: cloud
     inputs:
-    fields:
-      - id: username
-        type: string
-        label: RHSM User name
-        secret: true
-      - id: password
-        type: string
-        label: RHSM password
-        secret: true
+      fields:
+        - id: username
+          type: string
+          label: RHSM User name
+          secret: true
+        - id: password
+          type: string
+          label: RHSM password
+          secret: true
     required:
       - username
       - password
