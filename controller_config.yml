@@ -57,10 +57,31 @@ controller_credential_types:
         rhsm_username: "{  { username }}"
         rhsm_password: "{  { password }}"
 
+  - name: KioskExtraParams
+    description: Extra params for Kiosk Container
+    kind: cloud
+    inputs:
+      fields:
+        - id: container_extra_params
+          type: string
+          label: Container Extra params including Gateway Admin password
+          secret: true
+      required:
+        - container_extra_params
+      injectors:
+        extra_vars:
+          container_extra_params: "{  { container_extra_params }}"
+
 controller_templates: []
 
 controller_schedules: []
 
-controller_credentials: []
+controller_credentials:
+  - name: Kubeconfig
+    description: Local Cluster Kubeconfig
+    organization: "HMI Demo"
+    credential_type: Kubeconfig
+    inputs:
+      kube_config: "{{ secrets['kubeconfig'] }}"
 
 controller_launch_jobs: []
