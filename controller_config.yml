@@ -4,7 +4,12 @@ controller_validate_certs: false
 
 controller_configuration_async_retries: 30
 
-controller_settings: []
+controller_settings:
+  - name: AWX_COLLECTIONS_ENABLED
+    value: true
+
+  - name: AWX_ROLES_ENABLED
+    value: true
 
 controller_projects:
   - name: Demo Project
@@ -101,7 +106,7 @@ controller_templates:
     inventory: HMI Demo Kiosks
     credentials:
       - kiosk-private-key
-    #execution_environment: Ansible Edge GitOps EE
+    execution_environment: Default execution environment
 
   - name: Dynamic Provision Kiosk Playbook
     organization: HMI Demo
@@ -114,7 +119,7 @@ controller_templates:
       - kiosk-private-key
       - rhsm_credential
       - kiosk_container_extra_params
-    #execution_environment: Ansible Edge GitOps EE
+    execution_environment: Default execution environment
 
   - name: Kiosk Mode Playbook
     organization: HMI Demo
@@ -125,7 +130,7 @@ controller_templates:
     credentials:
       - kiosk-private-key
       - rhsm_credential
-    #execution_environment: Ansible Edge GitOps EE
+    execution_environment: Default execution environment
 
   - name: Podman Playbook
     organization: HMI Demo
@@ -136,7 +141,7 @@ controller_templates:
     credentials:
       - kiosk-private-key
       - kiosk_container_extra_params
-    #execution_environment: Ansible Edge GitOps EE
+    execution_environment: Default execution environment
 
 controller_schedules:
   - name: Dynamic Provision Kiosk Playbook
@@ -220,7 +225,4 @@ controller_credentials:
 
 controller_launch_jobs: []
 
-controller_execution_environments:
-  - name: Ansible Edge GitOps EE
-    image: quay.io/hybridcloudpatterns/ansible-edge-gitops-ee
-    pull: always
+controller_execution_environments: []
