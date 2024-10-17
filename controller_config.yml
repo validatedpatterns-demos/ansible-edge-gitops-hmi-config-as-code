@@ -30,11 +30,11 @@ controller_credential_types:
           multiline: true
       required:
         - kube_config
-      injectors:
-        env:
-          K8S_AUTH_KUBECONFIG: "{  { tower.filename.kubeconfig }}"
-        file:
-          template.kubeconfig: "{  { kube_config }}"
+    injectors:
+      env:
+        K8S_AUTH_KUBECONFIG: "{  { tower.filename.kubeconfig }}"
+      file:
+        template.kubeconfig: "{  { kube_config }}"
 
   - name: RHSMcredential
     description: RHSM Credentials
@@ -49,9 +49,9 @@ controller_credential_types:
           type: string
           label: RHSM password
           secret: true
-    required:
-      - username
-      - password
+      required:
+        - username
+        - password
     injectors:
       extra_vars:
         rhsm_username: "{  { username }}"
