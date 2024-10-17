@@ -80,7 +80,7 @@ controller_credential_input_sources:
     input_field_name: username
     metadata:
       secret_backend: secret
-      secret_path: hub/kiosk-ssh-key
+      secret_path: hub/kiosk-ssh
       secret_key: username
 
   - source_credential: Hashivault
@@ -88,7 +88,7 @@ controller_credential_input_sources:
     input_field_name: ssh_key_data
     metadata:
       secret_backend: secret
-      secret_path: hub/kiosk-ssh-key
+      secret_path: hub/kiosk-ssh
       secret_key: privatekey
 
 controller_credentials:
@@ -113,8 +113,5 @@ controller_credentials:
     description: Machine credential for kiosk type machines
     organization: HMI Demo
     credential_type: Machine
-    #inputs:
-      #username: "{{ secrets[item ~ '-ssh']['username'] }}"
-      #ssh_key_data: "{{ secrets[item ~ '-ssh']['privatekey'] }}"
 
 controller_launch_jobs: []
