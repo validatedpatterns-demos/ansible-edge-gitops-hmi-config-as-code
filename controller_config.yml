@@ -10,13 +10,52 @@ controller_settings: []
 
 controller_projects: []
 
-controller_organizations: []
+controller_organizations:
+  - name: "HMI Demo"
 
 controller_inventories: []
 
 controller_inventory_sources: []
 
-controller_credential_types: []
+controller_credential_types:
+  - name: Kubeconfig
+    description: kubeconfig file
+    kind: cloud
+    inputs:
+      fields:
+        - id: kube_config
+          type: string
+          label: kubeconfig
+          secret: true
+          multiline: true
+      required:
+        - kube_config
+      injectors:
+        env:
+          K8S_AUTH_KUBECONFIG: "{  { tower.filename.kubeconfig }}"
+        file:
+          template.kubeconfig: "{  { kube_config }}"
+
+  - name: RHSMcredential
+    description: RHSM Credentials
+    kind: cloud
+    inputs:
+    fields:
+      - id: username
+        type: string
+        label: RHSM User name
+        secret: true
+      - id: password
+        type: string
+        label: RHSM password
+        secret: true
+    required:
+      - username
+      - password
+    injectors:
+      extra_vars:
+        rhsm_username: "{  { username }}"
+        rhsm_password: "{  { password }}"
 
 controller_templates: []
 
