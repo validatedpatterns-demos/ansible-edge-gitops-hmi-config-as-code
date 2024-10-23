@@ -155,7 +155,7 @@ controller_credential_input_sources:
     input_field_name: username
     metadata:
       secret_backend: secret
-      secret_path: hub/kiosk-ssh
+      secret_path: hub/vm-ssh
       secret_key: username
 
   - source_credential: Hashivault
@@ -163,7 +163,7 @@ controller_credential_input_sources:
     input_field_name: ssh_key_data
     metadata:
       secret_backend: secret
-      secret_path: hub/kiosk-ssh
+      secret_path: hub/vm-ssh
       secret_key: privatekey
 
   - source_credential: Hashivault
