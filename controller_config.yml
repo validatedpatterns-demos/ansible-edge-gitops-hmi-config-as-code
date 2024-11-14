@@ -42,7 +42,7 @@ controller_inventory_sources:
   - name: HMI Demo Static Inventory
     inventory: HMI Demo Inventory
     organization: HMI Demo
-    source: project
+    source: scm
     source_project: AEG GitOps
     source_path: inventory
     update_on_launch: true
