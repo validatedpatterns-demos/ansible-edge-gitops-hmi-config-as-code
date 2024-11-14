@@ -33,10 +33,13 @@ controller_inventories:
     organization: HMI Demo
     kind: smart
     host_filter: name__icontains=kiosk
-    inventory: HMI Demo Inventory
+    inventory: HMI Demo Static Inventory
+
+  - name: HMI Demo Inventory
+    organization: HMI Demo
 
 controller_inventory_sources:
-  - name: HMI Demo Inventory
+  - name: HMI Demo Static Inventory
     inventory: HMI Demo Inventory
     organization: HMI Demo
     source_project: AEG GitOps
