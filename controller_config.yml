@@ -37,6 +37,7 @@ controller_inventories:
 
 controller_inventory_sources:
   - name: HMI Demo Inventory
+    inventory: HMI Demo Inventory
     organization: HMI Demo
     source_project: AEG GitOps
     source_path: inventory
