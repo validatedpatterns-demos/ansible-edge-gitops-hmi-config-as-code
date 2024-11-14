@@ -24,6 +24,15 @@ controller_projects:
     scm_update_on_launch: "yes"
     scm_url: https://github.com/validatedpatterns-demos/rhvp.ansible_edge_hmi.git
 
+  - name: AEG GitOps Inventory
+    organization: HMI Demo
+    scm_branch: main
+    scm_clean: "no"
+    scm_delete_on_update: "no"
+    scm_type: git
+    scm_update_on_launch: "yes"
+    scm_url: https://github.com/validatedpatterns-demos/ansible-edge-gitops-hmi-inventory.git
+
 controller_organizations:
   - name: HMI Demo
     galaxy_credentials: Ansible Galaxy
@@ -33,28 +42,21 @@ controller_inventories:
     organization: HMI Demo
     kind: smart
     host_filter: name__icontains=kiosk
+    inventory: HMI Demo Static Inventory
 
-controller_inventory_sources: []
+  - name: HMI Demo Inventory
+    organization: HMI Demo
+
+controller_inventory_sources:
+  - name: HMI Demo Static Inventory
+    inventory: HMI Demo Inventory
+    organization: HMI Demo
+    source: scm
+    source_project: AEG GitOps Inventory
+    source_path: inventory
+    update_on_launch: true
 
 controller_credential_types:
-  - name: Kubeconfig
-    description: kubeconfig file
-    kind: cloud
-    inputs:
-      fields:
-        - id: kube_config
-          type: string
-          label: kubeconfig
-          secret: true
-          multiline: true
-      required:
-        - kube_config
-    injectors:
-      env:
-        K8S_AUTH_KUBECONFIG: "{  { tower.filename.kubeconfig }}"
-      file:
-        template.kubeconfig: "{  { kube_config }}"
-
   - name: RHSMcredential
     description: RHSM Credentials
     kind: cloud
@@ -105,14 +107,13 @@ controller_templates:
       - kiosk-private-key
     execution_environment: Default execution environment
 
-  - name: Dynamic Provision Kiosk Playbook
+  - name: Provision Kiosk Playbook
     organization: HMI Demo
     project: AEG GitOps
     job_type: run
-    playbook: playbooks/dynamic_kiosk_provision.yml
+    playbook: playbooks/provision_kiosk.yml
     inventory: HMI Demo Kiosks
     credentials:
-      - Kubeconfig
       - kiosk-private-key
       - rhsm_credential
       - kiosk_container_extra_params
@@ -141,9 +142,9 @@ controller_templates:
     execution_environment: Default execution environment
 
 controller_schedules:
-  - name: Dynamic Provision Kiosk Playbook
+  - name: Provision Kiosk Playbook
     organization: HMI Demo
-    unified_job_template: Dynamic Provision Kiosk Playbook
+    unified_job_template: Provision Kiosk Playbook
     rrule: DTSTART:20191219T130500Z RRULE:FREQ=MINUTELY;INTERVAL=10
 
 controller_credential_input_sources:
@@ -197,13 +198,6 @@ controller_credentials:
       token: "{{ secrets['vault_root_token'] }}"
       cacert: "{{ secrets['vault_ca'] }}"
       api_version: v2
-
-  - name: Kubeconfig
-    description: Local Cluster Kubeconfig
-    organization: HMI Demo
-    credential_type: Kubeconfig
-    inputs:
-      kube_config: "{{ secrets['kubeconfig'] }}"
 
   - name: rhsm_credential
     description: RHSM credential registering RHEL VMs
