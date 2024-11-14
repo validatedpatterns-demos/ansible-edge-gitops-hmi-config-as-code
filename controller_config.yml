@@ -24,6 +24,15 @@ controller_projects:
     scm_update_on_launch: "yes"
     scm_url: https://github.com/validatedpatterns-demos/rhvp.ansible_edge_hmi.git
 
+  - name: AEG GitOps Inventory
+    organization: HMI Demo
+    scm_branch: main
+    scm_clean: "no"
+    scm_delete_on_update: "no"
+    scm_type: git
+    scm_update_on_launch: "yes"
+    scm_url: https://github.com/validatedpatterns-demos/ansible-edge-gitops-hmi-inventory.git
+
 controller_organizations:
   - name: HMI Demo
     galaxy_credentials: Ansible Galaxy
@@ -43,7 +52,7 @@ controller_inventory_sources:
     inventory: HMI Demo Inventory
     organization: HMI Demo
     source: scm
-    source_project: AEG GitOps
+    source_project: AEG GitOps Inventory
     source_path: inventory
     update_on_launch: true
 
