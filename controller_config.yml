@@ -19,6 +19,8 @@ controller_projects:
     scm_type: git
     scm_update_on_launch: "yes"
     scm_url: https://github.com/validatedpatterns-demos/rhvp.ansible_edge_hmi.git
+    wait: true
+    update_project: true
 
   - name: AEG GitOps Inventory
     organization: HMI Demo
@@ -28,6 +30,8 @@ controller_projects:
     scm_type: git
     scm_update_on_launch: "yes"
     scm_url: https://github.com/validatedpatterns-demos/ansible-edge-gitops-hmi-inventory.git
+    wait: true
+    update_project: true
 
 organizations:
   - name: HMI Demo
@@ -210,8 +214,6 @@ controller_credentials:
     organization: HMI Demo
     credential_type: KioskExtraParams
 
-controller_launch_jobs:
-  - name: AEG GitOps
-  - name: AEG GitOps Inventory
+controller_launch_jobs: []
 
 controller_execution_environments: []
