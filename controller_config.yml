@@ -210,6 +210,13 @@ controller_credentials:
     organization: HMI Demo
     credential_type: KioskExtraParams
 
-controller_launch_jobs: []
+controller_launch_jobs:
+  - name: AEG GitOps Inventory
+    organization: HMI Demo
+    unified_job_template: AEG GitOps Inventory
+
+  - name: AEG GitOps
+    organization: HMI Demo
+    unified_job_template: AEG GitOps
 
 controller_execution_environments: []
