@@ -211,12 +211,7 @@ controller_credentials:
     credential_type: KioskExtraParams
 
 controller_launch_jobs:
-  - name: AEG GitOps Inventory
-    organization: HMI Demo
-    unified_job_template: AEG GitOps Inventory
-
   - name: AEG GitOps
-    organization: HMI Demo
-    unified_job_template: AEG GitOps
+  - name: AEG GitOps Inventory
 
 controller_execution_environments: []
