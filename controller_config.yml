@@ -1,9 +1,5 @@
 # vim: ft=yaml.ansible
 ---
-# 2.5 compatibility section
-aap_organizations: '{{ controller_organizations }}'
-# End 2.5 compatibiity section
-
 controller_settings:
   - name: AWX_COLLECTIONS_ENABLED
     value: true
@@ -33,7 +29,7 @@ controller_projects:
     scm_update_on_launch: "yes"
     scm_url: https://github.com/validatedpatterns-demos/ansible-edge-gitops-hmi-inventory.git
 
-controller_organizations:
+organizations:
   - name: HMI Demo
     galaxy_credentials: Ansible Galaxy
 
