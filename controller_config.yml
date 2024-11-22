@@ -1,5 +1,9 @@
 # vim: ft=yaml.ansible
 ---
+aap_organizations:
+  - name: HMI Demo
+    galaxy_credentials: Ansible Galaxy
+
 controller_settings:
   - name: AWX_COLLECTIONS_ENABLED
     value: true
@@ -32,10 +36,6 @@ controller_projects:
     scm_url: https://github.com/validatedpatterns-demos/ansible-edge-gitops-hmi-inventory.git
     wait: true
     update_project: true
-
-organizations:
-  - name: HMI Demo
-    galaxy_credentials: Ansible Galaxy
 
 controller_inventories:
   - name: HMI Demo Kiosks
