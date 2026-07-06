@@ -37,7 +37,7 @@ controller_projects:
 
   - name: AEG GitOps Inventory
     organization: "{{ orgname_vault }}"
-    scm_branch: main
+    scm_branch: v2
     scm_clean: "no"
     scm_delete_on_update: "no"
     scm_type: git
@@ -120,7 +120,7 @@ controller_templates:
     organization: "{{ orgname_vault }}"
     project: AEG GitOps
     job_type: run
-    playbook: playbooks/dynamic_kiosk_provision.yml
+    playbook: playbooks/provision_kiosk.yml
     inventory: HMI Demo Kiosks
     credentials:
       - kiosk-private-key
