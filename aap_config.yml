@@ -18,7 +18,7 @@ controller_projects:
 
   - name: AEG GitOps
     organization: "{{ orgname_vault }}"
-    scm_branch: v1
+    scm_branch: v2
     scm_clean: "no"
     scm_delete_on_update: "no"
     scm_type: git
