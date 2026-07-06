@@ -51,7 +51,7 @@ controller_inventories:
     organization: "{{ orgname_vault }}"
     kind: smart
     host_filter: name__icontains=kiosk
-    inventory: HMI Demo Static Inventory
+    inventory: HMI Demo Inventory
 
   - name: HMI Demo Inventory
     organization: "{{ orgname_vault }}"
