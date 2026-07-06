@@ -1,8 +1,9 @@
 # vim: ft=yaml.ansible
 ---
+orgname_vault: "HMI Demo"
+
 aap_organizations:
-  - name: HMI Demo
-    galaxy_credentials: Ansible Galaxy
+  - name: "{{ orgname_vault }}"
 
 controller_settings:
   - name: AWX_COLLECTIONS_ENABLED
@@ -16,7 +17,7 @@ controller_projects:
     state: absent
 
   - name: AEG GitOps
-    organization: HMI Demo
+    organization: "{{ orgname_vault }}"
     scm_branch: v1
     scm_clean: "no"
     scm_delete_on_update: "no"
@@ -98,7 +99,7 @@ controller_templates:
     state: absent
 
   - name: Ping Playbook
-    organization: HMI Demo
+    organization: "{{ orgname_vault }}"
     project: AEG GitOps
     job_type: run
     playbook: playbooks/ping.yml
@@ -108,10 +109,10 @@ controller_templates:
     execution_environment: Default execution environment
 
   - name: Provision Kiosk Playbook
-    organization: HMI Demo
+    organization: "{{ orgname_vault }}"
     project: AEG GitOps
     job_type: run
-    playbook: playbooks/provision_kiosk.yml
+    playbook: playbooks/dynamic_kiosk_provision.yml
     inventory: HMI Demo Kiosks
     credentials:
       - kiosk-private-key
@@ -120,7 +121,7 @@ controller_templates:
     execution_environment: Default execution environment
 
   - name: Kiosk Mode Playbook
-    organization: HMI Demo
+    organization: "{{ orgname_vault }}"
     project: AEG GitOps
     job_type: run
     playbook: playbooks/kiosk_playbook.yml
@@ -189,6 +190,13 @@ controller_credential_input_sources:
       secret_key: container_extra_params
 
 controller_credentials:
+  - name: Public Galaxy
+    description: "Explicit Public Galaxy Credentials"
+    organization: '{{ orgname_vault }}'
+    credential_type: 
+    inputs:
+      url: 'https://galaxy.ansible.com'
+
   - name: Hashivault
     description: In-Cluster Hashicorp vault lookup
     organization: HMI Demo
