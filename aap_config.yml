@@ -8,6 +8,11 @@ vault_url_vault: "{{ secrets['vault_url'] }}"
 vault_token_vault: "{{ secrets['vault_root_token'] }}"
 vault_cacert_vault: "{{ secrets['vault_ca'] }}"
 
+# Project SCM sync plus Galaxy collection install exceeds the collection
+# default of 50 retries x 1s (~50s), which fails bootstrap with Unknown Error.
+aap_configuration_async_retries: 150
+aap_configuration_async_delay: 2
+
 aap_organizations:
   - name: "{{ orgname_vault }}"
     galaxy_credentials:
